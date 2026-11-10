@@ -1,0 +1,55 @@
+# name: Publish to NPM
+
+# on:
+#   push:
+#     tags:
+#       - "[0-9]*.[0-9]*.[0-9]*"
+
+# permissions:
+#   id-token: write  # Required for OIDC
+#   contents: read
+
+# jobs:
+#   publish:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       id-token: write
+#       contents: read
+#     steps:
+#       - name: Check Out Repo
+#         uses: actions/checkout@v4
+
+#       - name: Use Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "24.x"
+#           cache: "npm"
+
+#       - name: Validate semver tag
+#         run: |
+#           TAG="${GITHUB_REF_NAME}"
+#           if ! echo "$TAG" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+#             echo "Tag '$TAG' is not a valid semver tag (expected X.Y.Z)." >&2
+#             exit 1
+#           fi
+
+#       - name: Ensure tag is on main
+#         run: |
+#           git fetch origin main --depth=1
+#           if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+#             echo "Tag commit is not on main branch." >&2
+#             exit 1
+#           fi
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - name: Build
+#         run: npm run build
+#         env:
+#           NODE_ENV: production
+
+#       - name: Publish package on NPM
+#         run: npm publish
+#         env:
+#           NODE_ENV: production
