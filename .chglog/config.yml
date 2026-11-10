@@ -1,0 +1,29 @@
+style: github
+template: CHANGELOG.tpl.md
+
+info:
+  repository_url: https://github.com/my-f-startup/google-firestore-inbox
+
+options:
+  commits:
+    filters:
+      Type:
+        - feat
+        - fix
+        - refactor
+        - perf
+
+  commit_groups:
+    title_maps:
+      feat: Added
+      fix: Fixed
+      refactor: Changed
+      perf: Changed
+
+  header:
+    pattern: "^(\\w+)(\\(.+\\))?(!)?:\\s*(.*)$"
+    pattern_maps:
+      - Type
+      - Scope
+      - Breaking
+      - Subject

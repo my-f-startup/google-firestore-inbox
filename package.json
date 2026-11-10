@@ -1,0 +1,74 @@
+{
+  "name": "@my-f-startup/google-firestore-inbox",
+  "version": "0.1.0",
+  "description": "Inbox for Google Firestore: handles each delivered message once, with the record written in the transaction of its Firestore side effects and a declared class for each side effect outside Firestore.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:ts": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
+    "test": "tsx --test --test-concurrency=1 test/**/*.spec.ts",
+    "test:unit": "tsx --test --test-concurrency=1 test/*.unit.spec.ts",
+    "test:int": "tsx --test --test-concurrency=1 test/*.int.spec.ts",
+    "test:e2e": "tsx --test --test-concurrency=1 test/*.e2e.spec.ts"
+  },
+  "keywords": [
+    "firestore",
+    "google-cloud",
+    "inbox",
+    "idempotent-consumer",
+    "deduplication",
+    "messaging",
+    "event-driven"
+  ],
+  "author": "My Fucking Startup",
+  "license": "MIT",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/my-f-startup/google-firestore-inbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/my-f-startup/google-firestore-inbox/issues"
+  },
+  "homepage": "https://github.com/my-f-startup/google-firestore-inbox#readme",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@google-cloud/firestore": "^7.10.0"
+  },
+  "devDependencies": {
+    "@emmett-community/emmett-google-firestore": "^0.8.0",
+    "@eslint/js": "^9.39.5",
+    "@google-cloud/firestore": "^7.11.6",
+    "@types/node": "^25.9.9",
+    "@typescript-eslint/eslint-plugin": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.1",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-prettier": "^5.5.7",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "testcontainers": "^10.28.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}
